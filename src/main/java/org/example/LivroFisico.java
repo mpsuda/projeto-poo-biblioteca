@@ -10,6 +10,10 @@ public final class LivroFisico extends Livro implements Emprestavel {
         this.disponivel = disponivel;
     }
 
+    public LivroFisico(String javaBásico, Autor autor, int i) {
+        super();
+    }
+
     public boolean inDisponivel() { return disponivel; }
 
     @Override
@@ -19,10 +23,10 @@ public final class LivroFisico extends Livro implements Emprestavel {
 
     @Override
     public void emprestar() {
-        if (!disponivel) System.out.println("Não disponível: " + getTitulo());
+        if (!disponivel) System.out.println("Livro disponível: " + getTitulo());
         else {
             disponivel = false;
-            System.out.println("Emprestado: " + getTitulo());
+            System.out.println(" Livro Emprestado: " + getTitulo());
         }
     }
 
