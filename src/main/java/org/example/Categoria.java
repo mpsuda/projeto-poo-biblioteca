@@ -1,13 +1,20 @@
 package org.example;
 
-record Categoria(String categoria, String secao) {
+public record Categoria(String nome, String secao) {
     public Categoria {
-        if ("romance".equals(categoria)) {
-            throw new IllegalArgumentException("Não aceitamos romance");
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome da categoria e obrigatorio.");
+        }
+        if (nome.equalsIgnoreCase("Livro Terror")) {
+            throw new IllegalArgumentException("Livro Terror nao e aceito.");
+        }
+        if (secao == null || secao.isBlank()) {
+            secao = "sem secao";
         }
     }
 
-    public String getNome() {
-        return categoria();
-    }
+    public String getNome() { return nome(); }
 }
+
+
+

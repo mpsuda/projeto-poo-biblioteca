@@ -1,21 +1,34 @@
+
+
 package org.example;
 
-abstract class LivroFisico extends Livro{
+public final class LivroFisico extends Livro implements Emprestavel {
     private boolean disponivel;
 
-    public LivroFisico(String titulo, Autor Autor, Categoria Categoria,boolean disponivel) {
-        super(titulo, Autor, Categoria);
+    public LivroFisico(String titulo, Autor autor, Categoria categoria, boolean disponivel) {
+        super(titulo, autor, categoria);
         this.disponivel = disponivel;
     }
-    public boolean getDisponivel() {
-        return disponivel;
-    }
+
+    public boolean inDisponivel() { return disponivel; }
 
     @Override
     public String exibirDetalhes() {
-        return "Título: " + getTitulo() +
-                ", Autor: " + getAutor().getNome() +
-                ", Categoria: " + getCategoria().getNome() +
-                ", Disponível: " + disponivel ;
+        return "[Físico] " + getTitulo() + " - " + getAutor().getNome() + " (Disponível: " + disponivel + ")";
+    }
+
+    @Override
+    public void emprestar() {
+        if (!disponivel) System.out.println("Não disponível: " + getTitulo());
+        else {
+            disponivel = false;
+            System.out.println("Emprestado: " + getTitulo());
+        }
+    }
+
+    @Override
+    public void devolver() {
+        disponivel = true;
+        System.out.println("Devolvido: " + getTitulo());
     }
 }

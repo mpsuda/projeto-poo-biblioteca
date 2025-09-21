@@ -1,15 +1,11 @@
 package org.example;
 
-abstract class LivroDigital extends Livro {
-    private String tamanhoArquivo;
+public non-sealed class LivroDigital extends Livro {
+    private final String tamanhoArquivo;
 
-    public LivroDigital(String titulo, Autor Autor, Categoria Categoria, String tamanhoArquivo) {
-        super(titulo, Autor, Categoria);
+    public LivroDigital(String titulo, Autor autor, Categoria categoria, String tamanhoArquivo) {
+        super(titulo, autor, categoria);
         this.tamanhoArquivo = tamanhoArquivo;
-    }
-
-    public String getTamanhoArquivo() {
-        return tamanhoArquivo;
     }
 
     @Override
@@ -20,3 +16,4 @@ abstract class LivroDigital extends Livro {
                 ", Tamanho do Arquivo: " + tamanhoArquivo;
     }
 }
+
