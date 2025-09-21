@@ -1,38 +1,36 @@
-
-
 package org.example;
 
 public final class LivroFisico extends Livro implements Emprestavel {
-    private boolean disponivel;
+    private final int paginas;
+    private boolean disponivel = true;
 
-    public LivroFisico(String titulo, Autor autor, Categoria categoria, boolean disponivel) {
+    public LivroFisico(String titulo, Autor autor, Categoria categoria, int paginas) {
         super(titulo, autor, categoria);
-        this.disponivel = disponivel;
+        this.paginas = paginas;
     }
 
-    public LivroFisico(String javaBásico, Autor autor, int i) {
-        super();
-    }
-
-    public boolean inDisponivel() { return disponivel; }
+    public int getPaginas() { return paginas; }
+    public boolean isDisponivel() { return disponivel; }
 
     @Override
     public String exibirDetalhes() {
-        return "[Físico] " + getTitulo() + " - " + getAutor().getNome() + " (Disponível: " + disponivel + ")";
+        return "[Físico] " + getTitulo() + " - " + getAutor().getNome() +
+                " (" + paginas + " páginas, Disponível: " + disponivel + ")";
     }
 
     @Override
     public void emprestar() {
-        if (!disponivel) System.out.println("Livro disponível: " + getTitulo());
-        else {
+        if (!disponivel) {
+            System.out.println("Livro já emprestado: " + getTitulo());
+        } else {
             disponivel = false;
-            System.out.println(" Livro Emprestado: " + getTitulo());
+            System.out.println("Livro emprestado: " + getTitulo());
         }
     }
 
     @Override
     public void devolver() {
         disponivel = true;
-        System.out.println("Devolvido: " + getTitulo());
+        System.out.println("Livro devolvido: " + getTitulo());
     }
 }

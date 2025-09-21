@@ -1,26 +1,18 @@
 package org.example;
 
 public non-sealed class LivroDigital extends Livro {
-    private final double tamanhoMB; // em MB
+    private final String tamanhoArquivo;
 
-    public LivroDigital(String titulo, double tamanhoMB) {
+    public LivroDigital(String titulo, Autor autor, Categoria categoria, String tamanhoArquivo) {
         super(titulo, autor, categoria);
-        this.tamanhoMB = tamanhoMB;
+        this.tamanhoArquivo = tamanhoArquivo;
     }
+
+    public String getTamanhoArquivo() { return tamanhoArquivo; }
 
     @Override
     public String exibirDetalhes() {
-        return "Título: " + getTitulo() +
-                ", Autor: " + getAutor().getNome() +
-                ", Categoria: " + getCategoria().getNome() +
-                ", Tamanho do Arquivo: " + tamanhoMB + " MB";
-    }
-
-    public double getTamanhoMB() {
-        return tamanhoMB;
+        return "[Digital] " + getTitulo() + " - " + getAutor().getNome() +
+                " (" + tamanhoArquivo + ")";
     }
 }
-
-
-
-

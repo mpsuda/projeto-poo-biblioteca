@@ -1,30 +1,30 @@
 package org.example;
 
 public class Autor {
-    private String nomeAutor;
+    private String nome;
     private String nacionalidade;
 
-    public Autor(String nomeAutor, String nacionalidade) {
-        this.nomeAutor = nomeAutor;
+    public Autor(String nome, String nacionalidade) {
+        this.nome = nome;
         this.nacionalidade = nacionalidade;
     }
-    public Autor(String nomeAutor) {
-        this.nomeAutor = nomeAutor;
-        System.out.println(this.nomeAutor);
+
+    public Autor(String nome) {
+        this.nome = nome;
     }
+
     public Autor() {
-        System.out.print("Autor sem nada");
+        this.nome = "Autor desconhecido";
+        this.nacionalidade = "Desconhecida";
     }
-    public String getNome() {
-        return nomeAutor;
-    }
-    public void setNacionalidade(String nacionalidade) {
-        this.nacionalidade = nacionalidade;
-    }
-    public String getNacionalidade() {
-        return nacionalidade;
-    }
-    public void setNomeAutor(String nomeAutor) {
-        this.nomeAutor = nomeAutor;
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getNacionalidade() { return nacionalidade; }
+    public void setNacionalidade(String nacionalidade) { this.nacionalidade = nacionalidade; }
+
+    @Override
+    public String toString() {
+        return nome + (nacionalidade != null ? " (" + nacionalidade + ")" : "");
     }
 }
