@@ -1,36 +1,42 @@
 package org.example;
 
 public final class LivroFisico extends Livro implements Emprestavel {
-    private final int paginas;
-    private boolean disponivel = true;
+    private final double paginas;
+    private boolean disponivel;
 
-    public LivroFisico(String titulo, Autor autor, Categoria categoria, int paginas) {
+    public LivroFisico(String titulo, Autor autor, Categoria categoria, double paginas) {
         super(titulo, autor, categoria);
         this.paginas = paginas;
+        this.disponivel = true;
     }
 
-    public int getPaginas() { return paginas; }
-    public boolean isDisponivel() { return disponivel; }
+    public double getPaginas() {
+        return paginas;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
 
     @Override
     public String exibirDetalhes() {
-        return "[Físico] " + getTitulo() + " - " + getAutor().getNome() +
-                " (" + paginas + " páginas, Disponível: " + disponivel + ")";
+        return "[Físico] " + getTitulo() + " - " + getAutor().getNome()
+                + " (Disponível: " + disponivel + ")";
     }
 
     @Override
-    public void emprestar() {
-        if (!disponivel) {
-            System.out.println("Livro já emprestado: " + getTitulo());
+    public String emprestar() {
+        if (disponivel) {
+            return "Livro disponível: " + getTitulo();
         } else {
             disponivel = false;
-            System.out.println("Livro emprestado: " + getTitulo());
+            return "Livro emprestado: " + getTitulo();
         }
     }
 
     @Override
-    public void devolver() {
-        disponivel = true;
-        System.out.println("Livro devolvido: " + getTitulo());
+    public String devolver() {
+        disponivel = true; // agora sim altera o atributo da classe
+        return "Livro devolvido: " + getTitulo();
     }
 }

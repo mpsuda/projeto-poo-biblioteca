@@ -1,6 +1,6 @@
 package org.example;
 
 public interface Emprestavel {
-    void emprestar();
-    void devolver();
+    String emprestar();
+    String devolver();
 }

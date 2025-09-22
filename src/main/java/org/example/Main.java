@@ -1,14 +1,14 @@
 package org.example;
 
 
-import java.util.Scanner;2
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         var sc = new Scanner(System.in); // var para evitar repetir tipo
         var biblioteca = new Biblioteca();
 
-        Autor autor = new Autor("José de Alencar", "Brasileiro");
+        Autor autor = new Autor("Marcos Suda", "Brasileiro");
         Categoria categoria = new Categoria("Romance", "Literatura");
 
         Livro livro1 = new LivroFisico("Terror Java", autor, categoria, 350);
