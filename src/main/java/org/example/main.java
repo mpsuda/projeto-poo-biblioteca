@@ -1,19 +1,20 @@
 package org.example;
+
 import java.util.Scanner;
 
-public class Main {
+public class main {
     public static void main(String[] args) {
-        var sc = new Scanner(System.in); // var para evitar repetir tipo
+        var sc = new Scanner(System.in);
         var biblioteca = new Biblioteca();
 
-        Autor autor = new Autor("Marcos Suda", "Brasileiro");
-        Categoria categoria = new Categoria("Romance", "Literatura");
+        Autor autor = new Autor("Marcos");
+        Categoria categoria = new Categoria("Programação", "Técnico");
 
-        Livro livro1 = new LivroFisico("Terror Java", autor, categoria, 350);
-        Livro livro2 = new LivroDigital("Blood", autor, categoria, "2.5MB");
+        LivroFisico livroFisico = new LivroFisico("Terror Java", autor, categoria, 350);
+        LivroDigital livroDigital = new LivroDigital("Aprendendo Java", autor, categoria, "2.5MB");
 
-        biblioteca.adicionarLivro(livro1);
-        biblioteca.adicionarLivro(livro2);
+        biblioteca.adicionarLivro(livroFisico);
+        biblioteca.adicionarLivro(livroDigital);
 
         int opcao;
         do {
@@ -25,36 +26,32 @@ public class Main {
             System.out.println("0 - Sair");
             System.out.print("Escolha: ");
             opcao = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine(); // limpar buffer
 
             switch (opcao) {
-                case 1 -> {
-                    for (var livro : biblioteca.getLivros()) {
-                        System.out.println(livro.exibirDetalhes());
-                    }
-                }
+                case 1 -> biblioteca.listarLivros();
                 case 2 -> {
                     System.out.print("Digite o título: ");
-                    var titulo = sc.nextLine();
-                    Livro encontrado = biblioteca.buscarPorTitulo(titulo);
-                    System.out.println(encontrado != null ? encontrado.exibirDetalhes() : "Livro não encontrado.");
+                    var titulo = sc.nextLine().trim();
+                    var livro = biblioteca.buscarPorTitulo(titulo);
+                    System.out.println(livro != null ? livro.exibirDetalhes() : "Livro não encontrado.");
                 }
                 case 3 -> {
                     System.out.print("Digite o título: ");
-                    var titulo = sc.nextLine();
+                    var titulo = sc.nextLine().trim();
                     var livro = biblioteca.buscarPorTitulo(titulo);
-                    if (livro instanceof LivroFisico lf) { // pattern matching
-                        lf.emprestar();
+                    if (livro instanceof LivroFisico fisico) {
+                        System.out.println(fisico.emprestar());
                     } else {
                         System.out.println("Esse livro não pode ser emprestado.");
                     }
                 }
                 case 4 -> {
                     System.out.print("Digite o título: ");
-                    var titulo = sc.nextLine();
+                    var titulo = sc.nextLine().trim();
                     var livro = biblioteca.buscarPorTitulo(titulo);
-                    if (livro instanceof LivroFisico lf) {
-                        lf.devolver();
+                    if (livro instanceof LivroFisico fisico) {
+                        System.out.println(fisico.devolver());
                     } else {
                         System.out.println("Esse livro não pode ser devolvido.");
                     }
@@ -62,6 +59,7 @@ public class Main {
                 case 0 -> System.out.println("Saindo...");
                 default -> System.out.println("Opção inválida!");
             }
+
         } while (opcao != 0);
 
         sc.close();

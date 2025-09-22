@@ -10,15 +10,8 @@ public final class LivroFisico extends Livro implements Emprestavel {
         this.disponivel = true;
     }
 
-    public double getPaginas() {
-
-        return paginas;
-    }
-
-    public boolean isDisponivel() {
-
-        return disponivel;
-    }
+    public double getPaginas() { return paginas; }
+    public boolean isDisponivel() { return disponivel; }
 
     @Override
     public String exibirDetalhes() {
@@ -28,21 +21,14 @@ public final class LivroFisico extends Livro implements Emprestavel {
 
     @Override
     public String emprestar() {
-        if (disponivel) {
-            disponivel = false;
-            return "Livro emprestado: " + getTitulo();
-        } else {
-            return "Livro não disponível:: " + getTitulo();
-        }
+        if (!disponivel) return "Livro indisponível: " + getTitulo();
+        disponivel = false;
+        return "Livro emprestado: " + getTitulo();
     }
 
     @Override
     public String devolver() {
-        if (!disponivel) {
-            disponivel = true;
-            return "Livro devolvido: " + getTitulo();
-        } else {
-            return "Livro já está disponível: " + getTitulo();
-        }
+        disponivel = true;
+        return "Livro devolvido: " + getTitulo();
     }
 }

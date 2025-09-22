@@ -6,9 +6,7 @@ public sealed abstract class Livro permits LivroFisico, LivroDigital {
     private final Categoria categoria;
 
     public Livro(String titulo, Autor autor, Categoria categoria) {
-        if (titulo == null || titulo.isBlank()) {
-            throw new IllegalArgumentException("Título obrigatório.");
-        }
+        if (titulo == null || titulo.isBlank()) throw new IllegalArgumentException("Título obrigatório");
         this.titulo = titulo;
         this.autor = autor;
         this.categoria = categoria;
@@ -18,17 +16,13 @@ public sealed abstract class Livro permits LivroFisico, LivroDigital {
     public Autor getAutor() { return autor; }
     public Categoria getCategoria() { return categoria; }
 
-
     public abstract String exibirDetalhes();
 
-/*
-    public static void emprestar() {
-        System.out.println("Livro emprestado!");
+    // método auxiliar para formatar livros (pattern matching)
+    public static String formatarLivro(Livro livro) {
+        return switch (livro) {
+            case LivroFisico lf -> "📕 " + lf.getTitulo() + " (" + lf.getPaginas() + " páginas)";
+            case LivroDigital ld -> "💾 " + ld.getTitulo() + " (" + ld.getTamanhoArquivo() + ")";
+        };
     }
-
-    public static void devolver() {
-        System.out.println("Livro devolvido!");
-    }
-
- */
 }

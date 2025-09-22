@@ -12,7 +12,7 @@ public non-sealed class LivroDigital extends Livro {
 
     @Override
     public String exibirDetalhes() {
-        return "[Digital] " + getTitulo() + " - " + getAutor().getNome() +
-                " (" + tamanhoArquivo + ")";
+        return "[Digital] " + getTitulo() + " - " + getAutor().getNome()
+                + " (" + tamanhoArquivo + ")";
     }
 }

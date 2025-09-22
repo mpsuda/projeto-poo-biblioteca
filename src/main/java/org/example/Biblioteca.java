@@ -16,20 +16,15 @@ public class Biblioteca {
             System.out.println("Nenhum livro na biblioteca.");
             return;
         }
-        for (var livro : livros) { // uso de var
-            System.out.println(Livro.formatarLivro(livro));
+        for (var livro : livros) {
+            System.out.println(livro.exibirDetalhes());
         }
     }
 
-    // 🔹 uso de return
     public Livro buscarPorTitulo(String titulo) {
         for (var livro : livros) {
-            if (livro.getTitulo().equalsIgnoreCase(titulo)) {
-                return livro;
-            }
+            if (livro.getTitulo().equalsIgnoreCase(titulo)) return livro;
         }
         return null;
     }
-
-    public List<Livro> getLivros() { return livros; }
 }
