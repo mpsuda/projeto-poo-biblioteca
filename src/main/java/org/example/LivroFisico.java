@@ -11,10 +11,12 @@ public final class LivroFisico extends Livro implements Emprestavel {
     }
 
     public double getPaginas() {
+
         return paginas;
     }
 
     public boolean isDisponivel() {
+
         return disponivel;
     }
 
@@ -27,16 +29,20 @@ public final class LivroFisico extends Livro implements Emprestavel {
     @Override
     public String emprestar() {
         if (disponivel) {
-            return "Livro disponível: " + getTitulo();
-        } else {
             disponivel = false;
             return "Livro emprestado: " + getTitulo();
+        } else {
+            return "Livro não disponível:: " + getTitulo();
         }
     }
 
     @Override
     public String devolver() {
-        disponivel = true; // agora sim altera o atributo da classe
-        return "Livro devolvido: " + getTitulo();
+        if (!disponivel) {
+            disponivel = true;
+            return "Livro devolvido: " + getTitulo();
+        } else {
+            return "Livro já está disponível: " + getTitulo();
+        }
     }
 }

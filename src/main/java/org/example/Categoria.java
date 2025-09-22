@@ -1,23 +1,20 @@
 package org.example;
 
-public class Categoria {
-    private String nome;
-    private String secao;
-
-    public Categoria(String nome, String secao) {
-        if ("Livro Terror".equalsIgnoreCase(nome)) {
-            throw new IllegalArgumentException("Não aceitamos Livro Terror");
+public record Categoria(String nome, String secao) {
+    public Categoria {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome da categoria e obrigatorio.");
         }
-        this.nome = nome;
-        this.secao = secao;
+        if (nome.equalsIgnoreCase("Livro Terror")) {
+            throw new IllegalArgumentException("Livro Terror nao e aceito.");
+        }
+        if (secao == null || secao.isBlank()) {
+            secao = "sem secao";
+        }
     }
 
-
-    public String getNome() { return nome; }
-    public String getSecao() { return secao; }
-
-    @Override
-    public String toString() {
-        return nome + " | Seção: " + secao;
-    }
+    public String getNome() { return nome(); }
 }
+
+
+
